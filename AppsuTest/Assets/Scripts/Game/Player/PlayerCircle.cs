@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AppsuTest
 {
-    public class PlayerCircle : Player, IDestroyFigure, IMoveable
+    public class PlayerCircle : Player, IDestroyFigure, IMovable
     {
         private FingerController _fingerController => gameObject.GetComponent<FingerController>();
 
@@ -55,27 +55,28 @@ namespace AppsuTest
             var step = _speed * Time.deltaTime;
             float changeRatePerSecond;
             
-            changeRatePerSecond = 1 / timeFromZeroToMax * Time.deltaTime;
-            _speed = Mathf.MoveTowards(_speed, _maxSpeed, changeRatePerSecond);
+
 
             var targetPosition = _targets[_currentTargets];
-            
- 
+
             
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
             var distance =  Math.Round(Distance(transform.position,targetPosition),2);
 
-            //
-            // if ((_currentTargets+1==_targets.Count)&&(Distance(transform.position,_targets[_targets.Count]) < distanceToStop))
-            // {
-            //     changeRatePerSecond = 1 / timeFromMaxToZero * Time.deltaTime;
-            //     _speed = Mathf.MoveTowards (_speed, 1, changeRatePerSecond);
-            // }
-            // else
-            // {
-            //     changeRatePerSecond = 1 / timeFromZeroToMax * Time.deltaTime;
-            //     _speed = Mathf.MoveTowards(_speed, _maxSpeed, changeRatePerSecond);
-            // }
+ 
+
+            bool _stopDistance =Distance(transform.position, _targets[_targets.Count-1])<distanceToStop;
+
+            if ((_targets.Count-6<_currentTargets)&&_stopDistance)
+            {
+                changeRatePerSecond = 1 / timeFromMaxToZero * Time.deltaTime;
+                _speed = Mathf.MoveTowards (_speed, 1, changeRatePerSecond);
+            }
+            else
+            {
+                changeRatePerSecond = 1 / timeFromZeroToMax * Time.deltaTime;
+                _speed = Mathf.MoveTowards(_speed, _maxSpeed, changeRatePerSecond);
+            }
 
             if (distance == 0f)
             {

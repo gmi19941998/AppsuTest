@@ -9,20 +9,15 @@ namespace AppsuTest
          internal FiguresData FiguresData;
         [SerializeField] private LayerMask Mask;
         [SerializeField] private int RequiredNumberOfObjects;
-        [SerializeField] private Figures Figure=Figures.Square;
+        [SerializeField] private Figures Figure;
         [SerializeField] private FiguresGenerator figuresGenerator;
         [SerializeField] private float DelayOnStart;
         [SerializeField] private float Delay;
-
-
-
-
         private Coroutine _generate;
 
         private void Start()
         {
-            _generate=StartCoroutine(figuresGenerator.GenerateFigures(FiguresData.FiguresList[(int)Figure], FiguresData.FiguresInstantiated, RequiredNumberOfObjects, 0,
-                Delay,Mask));
+            GenerateFigure(0);
 
         }
 
@@ -30,13 +25,20 @@ namespace AppsuTest
         {
             StopCoroutine(_generate);
             FiguresData.FiguresInstantiated.Remove(figure);
-            GenerateFigure();
+            GenerateFigure(DelayOnStart);
         }
 
-        void GenerateFigure()
+        void GenerateFigure(float delayOnStart)
         {
-            _generate=StartCoroutine(figuresGenerator.GenerateFigures(FiguresData.FiguresList[(int)Figure], FiguresData.FiguresInstantiated, RequiredNumberOfObjects,
-                DelayOnStart, Delay,Mask));
+            foreach (var figure in FiguresData.FiguresList)
+            {
+                if (figure.FigureType == Figure)
+                {
+                    _generate=StartCoroutine(figuresGenerator.GenerateFigures(figure, FiguresData.FiguresInstantiated, RequiredNumberOfObjects,
+                        delayOnStart, Delay,Mask));
+                }   
+            }
+
         }
     }
 }

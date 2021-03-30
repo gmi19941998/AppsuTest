@@ -5,7 +5,6 @@ namespace AppsuTest
     {
         public GameController GameController;
 
-
     }
 
 }

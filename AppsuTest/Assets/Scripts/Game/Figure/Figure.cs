@@ -13,11 +13,9 @@ namespace AppsuTest
 
     public abstract class Figure : MonoBehaviour
     {
-        [SerializeField] private Figures FigureType;
+        [SerializeField] public Figures FigureType;
         public Vector2 Scale;
-
-
-
+        
     }
 
 }

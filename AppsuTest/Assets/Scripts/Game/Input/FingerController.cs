@@ -49,7 +49,13 @@ public class FingerController : ApplicationElement, IRaycasting
             OnGroundHit?.Invoke(CurMousePos);
             timer = 0;
         }
-
+        if (Input.GetMouseButtonUp(0) &&!EventSystem.current.IsPointerOverGameObject())
+        {
+            //  Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 1f);
+            if (hit.collider.GetComponent<PlayerCircle>()) return;
+            OnGroundHit?.Invoke(CurMousePos);
+            timer = 0;
+        }
         timer += Time.deltaTime;
     }
 }
