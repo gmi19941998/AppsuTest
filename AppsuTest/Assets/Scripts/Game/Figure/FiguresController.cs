@@ -6,7 +6,7 @@ namespace AppsuTest
 {
     public class FiguresController : ApplicationElement
     {
-        [SerializeField] internal FiguresData FiguresData;
+         internal FiguresData FiguresData;
         [SerializeField] private LayerMask Mask;
         [SerializeField] private int RequiredNumberOfObjects;
         [SerializeField] private Figures Figure=Figures.Square;
