@@ -15,9 +15,9 @@ namespace AppsuTest
         private void LateUpdate()
         {
             _distanceScore = app.controller.GameController.ScoreController.DistanceCount;
-            _distanceText.text = $"Distance:<br>{_distanceScore:N2}";
+            _distanceText.text = $"Distance:<br><color=red>{_distanceScore:N2}</color>";
             _score = app.controller.GameController.ScoreController.ScoreCount;
-            _scoreText.text = $"Score:<br>{_score}";
+            _scoreText.text = $"Score:<br><color=red>{_score}</color>";
         }
     }
  

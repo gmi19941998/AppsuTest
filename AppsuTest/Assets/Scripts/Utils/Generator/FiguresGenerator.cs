@@ -1,9 +1,6 @@
-
 using System.Collections;
 using System.Collections.Generic;
-using AppsuTest;
 using UnityEngine;
-
 using Random = UnityEngine.Random;
 
 namespace AppsuTest.Utils
@@ -21,7 +18,7 @@ namespace AppsuTest.Utils
             {
           
                 if (ObjectsList.Count >= RequiredNumberOfObjects) yield break;
-                Vector3 randomSpawnPosition = getValidSpawnLocation(Object);
+                Vector3 randomSpawnPosition = CheckValidPosition(Object);
 
                 if (randomSpawnPosition == Vector3.zero)
                 {
@@ -36,7 +33,7 @@ namespace AppsuTest.Utils
                 yield return new WaitForSeconds(Delay);
             }
 
-            Vector3 getValidSpawnLocation(Figure figure)
+            Vector3 CheckValidPosition(Figure figure)
             {
         
                 Vector3 newPosition = Vector3.zero;

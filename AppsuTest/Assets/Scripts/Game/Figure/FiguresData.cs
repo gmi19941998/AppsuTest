@@ -9,11 +9,6 @@ namespace AppsuTest
     {
         [SerializeField] public List<Figure> FiguresList=new List<Figure>();
         [SerializeField] internal List<Figure> FiguresInstantiated;
-
-        
-
-
-
     }
 }
 

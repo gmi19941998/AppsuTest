@@ -1,28 +1,18 @@
 using System;
-using System.Threading.Tasks;
 using AppsuTest;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class FingerController : ApplicationElement, IRaycasting
 {
-    // Start is called before the first frame update
-
-
+    
     public event Action OnPlayerHit;
     public event Action<Vector3> OnGroundHit;
-    
-    
-    
-   [SerializeField] private float _timeForNextRay = 0.05f;
+    [SerializeField] private float _timeForNextRay = 0.05f;
     private float timer = 0;
-
-
-
-
+    
     void Update()
     {
-        // GUI Action
 
         Raycasting();
     }
@@ -41,7 +31,6 @@ public class FingerController : ApplicationElement, IRaycasting
                 return;
             }
         }
-
         if (Input.GetMouseButton(0) && timer > _timeForNextRay && !EventSystem.current.IsPointerOverGameObject())
         {
             //  Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 1f);

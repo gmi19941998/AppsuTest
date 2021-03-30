@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace AppsuTest
 {
-
-
     public class GameController : ApplicationElement
     {
 

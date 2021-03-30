@@ -1,4 +1,3 @@
-
 using AppsuTest.Utils;
 using UnityEngine;
 

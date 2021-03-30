@@ -9,21 +9,15 @@ namespace AppsuTest
     public class PlayerCircle : Player, IDestroyFigure, IMovable
     {
         private FingerController _fingerController => gameObject.GetComponent<FingerController>();
-
-
         [SerializeField] private float _speed;
         [SerializeField] private float _maxSpeed;
-        [SerializeField] private float timeFromZeroToMax;
-        [SerializeField] private float timeFromMaxToZero;
-        [SerializeField] private float distanceToStop;
-        public bool isMove { get; set; }
-        [SerializeField] private int _currentTargets = 0;
-        [SerializeField] private Vector2 _lastPosition;
-
-
+        [SerializeField] private float _timeFromZeroToMax;
+        [SerializeField] private float _timeFromMaxToZero;
+        [SerializeField] private float _distanceToStop;
+         public bool isMove { get; set; }
+         private int _currentTargets;
+         private Vector2 _lastPosition;
         [SerializeField] private List<Vector3> _targets;
-
-
         public override event Action<float> UpdateDistanceCount;
         public override event Action<int> UpdateScoreCount;
         public override event Action<Figure> DestroyFigure;
@@ -53,29 +47,16 @@ namespace AppsuTest
         public void Move()
         {
             var step = _speed * Time.deltaTime;
-            float changeRatePerSecond;
-            
-
-
             var targetPosition = _targets[_currentTargets];
-
-            
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
             var distance =  Math.Round(Distance(transform.position,targetPosition),2);
-
- 
-
-            bool _stopDistance =Distance(transform.position, _targets[_targets.Count-1])<distanceToStop;
-
-            if ((_targets.Count-6<_currentTargets)&&_stopDistance)
+            bool _checkStopDistance =Distance(transform.position, _targets[_targets.Count-1])<_distanceToStop;
+            if ((_targets.Count-6<_currentTargets)&&_checkStopDistance)
             {
-                changeRatePerSecond = 1 / timeFromMaxToZero * Time.deltaTime;
-                _speed = Mathf.MoveTowards (_speed, 1, changeRatePerSecond);
+                _speed = Mathf.MoveTowards (_speed, 1, Deceleration());
             }
             else
             {
-                changeRatePerSecond = 1 / timeFromZeroToMax * Time.deltaTime;
-                _speed = Mathf.MoveTowards(_speed, _maxSpeed, changeRatePerSecond);
+                _speed = Mathf.MoveTowards(_speed, _maxSpeed, Acceleration());
             }
 
             if (distance == 0f)
@@ -86,8 +67,19 @@ namespace AppsuTest
                     StopMoving();
                 }
             }
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
         }
 
+
+        float Acceleration()
+        {
+          return 1 / _timeFromZeroToMax * Time.deltaTime; 
+        }
+
+        float Deceleration()
+        {
+            return  1 / _timeFromMaxToZero * Time.deltaTime;
+        }
         private void AddTarget(Vector3 targetPosition)
         {
             isMove = true;
@@ -99,7 +91,7 @@ namespace AppsuTest
             StopMoving();
         }
 
-        private void StopMoving()
+        public void StopMoving()
         {
             isMove = false;
             _targets.Clear();

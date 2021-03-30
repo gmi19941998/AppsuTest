@@ -226,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281546604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 20, y: 31.96, z: 1}
   m_Children: []
   m_Father: {fileID: 2015483653}
@@ -585,12 +585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
-  _maxSpeed: 10
-  timeFromZeroToMax: 0.25
-  timeFromMaxToZero: 0.1
-  distanceToStop: 6
-  _currentTargets: 0
-  _lastPosition: {x: 0, y: 0}
+  _maxSpeed: 6.5
+  _timeFromZeroToMax: 0.25
+  _timeFromMaxToZero: 0.2
+  _distanceToStop: 4
   _targets: []
 --- !u!212 &625638668
 SpriteRenderer:
@@ -651,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625638666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.07, y: 8.88, z: -8.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 2015483653}
@@ -748,7 +746,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.25
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 2.7100158
@@ -904,7 +902,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 36
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1356,8 +1354,8 @@ MonoBehaviour:
   RequiredNumberOfObjects: 20
   Figure: 0
   figuresGenerator: {fileID: 2119036422}
-  DelayOnStart: 3
-  Delay: 0.01
+  DelayOnStart: 1
+  Delay: 0.07
 --- !u!1 &1888718964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1448,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 36
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535

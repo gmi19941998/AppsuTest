@@ -1,4 +1,3 @@
-
 namespace AppsuTest
 {
     public class AppsuTestController : ApplicationElement

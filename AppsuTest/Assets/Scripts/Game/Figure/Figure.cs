@@ -6,7 +6,7 @@ namespace AppsuTest
 {
     public enum Figures // your custom enumeration
     {
-        Square=0, 
+        Square, 
         Hexagon 
 
     };
