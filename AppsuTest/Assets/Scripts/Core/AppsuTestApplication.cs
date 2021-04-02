@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AppsuTest;
@@ -14,7 +15,16 @@ namespace AppsuTest
     public class ApplicationElement : MonoBehaviour
     {
         // Gives access to the application and all instances.
-        protected AppsuTestApplication app { get { return GameObject.FindObjectOfType<AppsuTestApplication>(); }}
+        protected AppsuTestApplication app;
+      
+
+        
+        protected virtual void Awake()
+        {
+            app = FindObjectOfType<AppsuTestApplication>(); 
+        }
+
+
     }
     
 }
